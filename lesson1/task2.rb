@@ -4,11 +4,11 @@
 # author - Ilyina Liliya
 # date - 16.08.2016
 puts "Please enter a"
-a = Integer(gets.chomp)     
+a = gets.chomp     
 
 puts "Please enter h" 
-h = Integer(gets.chomp)     
+h = gets.chomp     
 
-S =  0.5 * (a * h)
+S =  0.5 * (a.to_f * h.to_f)
 
 puts "Square  = #{S}"

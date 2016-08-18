@@ -9,10 +9,9 @@ name = gets.chomp
 
 puts "Please enter your height" 
 #height = gets.chomp 
-height = Integer(gets.chomp)     
+height = gets.chomp     
 
-#ideal_weight = height.to_i - 110
-ideal_weight = height - 110
+ideal_weight = height.to_f - 110
 
 if ideal_weight > 0
 	puts "Hello #{name},  your ideal weight is #{ideal_weight}"

@@ -24,14 +24,8 @@ end
 
 serial_date_nubmer = serial_date_nubmer + day.to_i
 
-if month.to_i > 2 
-  if year.to_i%4 == 0 
-    if (year.to_i%100 == 0) && (year.to_i%400 != 0) 
-      serial_date_nubmer = serial_date_nubmer 
-    else
-      serial_date_nubmer += 1
-    end    
-  end      
+if (month.to_i > 2) && (year.to_i%400 == 0 || (year.to_i%4 == 0 && year.to_i%100 != 0))
+    serial_date_nubmer += 1
 end
 
 puts  "The serial number of date  =  #{serial_date_nubmer}"

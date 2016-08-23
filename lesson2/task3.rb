@@ -3,11 +3,11 @@
 
 array = [0]
 
-index = 1
+last_num = 1
 
-while index < 100 do
-  array.push(index)
-  index = array[-1] + array[-2]
+while last_num < 100 do
+  array << last_num
+  last_num = array[-1] + array[-2]
 end
 
 puts "#{array}"

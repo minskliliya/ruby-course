@@ -8,11 +8,8 @@ all_vowels = ["a", "e", "i", "o", "u", "y"]
 
 index = 0
 
-all_letters.to_a.each do |value|
-  if all_vowels.include?(value)
-    hash[value] = index
-  end
-  index = index + 1
+all_letters.each_with_index do |letter, index|
+  hash[letter] = index if all_vowels.include?(letter)
 end 
 
-puts "#{hash}"
+puts hash

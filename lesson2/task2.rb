@@ -5,7 +5,7 @@ array = []
 index = 10
 
 while index <= 100 do 
-  array.push(index)
+  array << index
   index += 5
 end
 puts "#{array}"

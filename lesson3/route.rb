@@ -13,12 +13,12 @@ class Route
     @route_stations = [start_station, end_station]
   end
 
-  def add_intermediate_station(new_station)
-    self.route_stations.insert(1,new_station) 
+  def add_station(new_station)
+    self.route_stations.insert(-2,new_station) 
     puts "A new station was added to the route. It is a #{new_station}"
   end 
 
-  def delete_intermediate_station(old_station)
+  def delete_station(old_station)
     self.route_stations.delete(old_station) 
   end
 

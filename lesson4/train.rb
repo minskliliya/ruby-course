@@ -29,7 +29,7 @@ class Train
   def increase_carriage(carriage)
     if self.speed != 0
       puts "We can't increase the carriage when the train is driving"
-    elsif self.id_train.type == carriage.type
+    elsif self.type == carriage.type
       self.number_carriage << carriage
       puts "After increasing the train #{self.id_train} has the following number of carriage #{self.number_carriage.size}"
     else
@@ -38,7 +38,7 @@ class Train
   end  
 
   def reduce_carriage
-    self.number_carriage.pop  if self.speed == 0
+    self.number_carriage.pop  if self.speed == 0 
     puts "After reduce the train #{self.id_train} has the following number of carriage #{self.number_carriage.size}"
   end  
 

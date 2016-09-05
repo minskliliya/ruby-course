@@ -7,8 +7,6 @@ require_relative 'cargo_train'
 require_relative 'passenger_carriage'
 require_relative 'passenger_train'
 
-
-
 class Main
 
   attr_accessor :stations, :trains
@@ -47,7 +45,7 @@ class Main
       delete_carriage
     when '5'
       puts "your choice is 'drive train' "
-      delete_carriage    
+      drive_train    
     when '6'
       puts "your choice is 'list stations' "
       list_stations       
@@ -77,28 +75,52 @@ end
     type = gets.chomp
     
     if type == "cargo"
-      @trains[id_train] = CargoTrain.new(id_train)
+      @trains[id_train] = CargoTrain.new(id_train, type)
     elsif type == "passenger"
-      @trains[id_train] = PassaengerTrain.new(id_train)
+      @trains[id_train] = PassengerTrain.new(id_train,type)
     else             
       puts "The type is incorrect"
     end
+    puts @trains
   end
   
   def add_carriage
-    
-
+    puts "Enter a name of train"
+    id_train = gets.chomp
+    if  @trains[id_train].type == "cargo"
+      carriage = CargoCarriage.new
+    else   
+      carriage = PassengerCarriage.new
+    end
+    @trains[id_train].increase_carriage(carriage)
+    puts @trains
   end
 
   def delete_carriage
-
+    puts "Enter a name of train"
+    id_train = gets.chomp
+    @trains[id_train].reduce_carriage
+    puts @trains
   end
 
-  def list_stations
 
+  def drive_train
+    puts "Enter a name of train"
+    id_train = gets.chomp
+    puts "Enter a name of station"
+    station = gets.chomp
+    @trains[id_train].go_other_station(station)
+    puts @stations
+  end 
+
+  def list_stations
+    puts @stations
   end
 
   def list_train
-
+    puts @trains
   end  
 end     
+
+obj1 = Main.new()
+obj1.menu_choice

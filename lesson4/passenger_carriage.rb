@@ -1,6 +1,6 @@
 class PassengerCarriage < Carriage
 
- def initialize 
+  def initialize 
     super("passenger")
   end 
 

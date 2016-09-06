@@ -88,7 +88,7 @@ end
     puts "Enter a name of train"
     id_train = gets.chomp
     if  @trains[id_train].type == "cargo"
-      carriage = CargoCarriage.new
+      carriage = CargoCarriage.new 
     else   
       carriage = PassengerCarriage.new
     end
@@ -109,7 +109,7 @@ end
     id_train = gets.chomp
     puts "Enter a name of station"
     station = gets.chomp
-    @trains[id_train].go_other_station(station)
+    @stations[station].arrive_train(@trains[id_train])
     puts @stations
   end 
 

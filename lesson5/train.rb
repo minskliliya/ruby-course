@@ -1,10 +1,10 @@
 class Train
 
   include CompanyTrain
-  
+
   attr_accessor :id_train, :type, :number_carriage, :speed, :route, :current_station, :number_train
 
-  @@trains_number = []
+  @@trains_number = {}
 
   def initialize(number_train,id_train, type)
     @number_train = number_train

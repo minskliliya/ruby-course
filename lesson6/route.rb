@@ -9,8 +9,8 @@ class Route
   attr_accessor :route_stations
 
   def initialize(start_station, end_station)
-    @route_stations = [start_station, end_station]
     validate!
+    @route_stations = [start_station, end_station]
   end  
 
   def valid?
@@ -35,11 +35,7 @@ class Route
 
   def validate!
     raise "Start station can't be nil" if start_station.nil?
-    raise "Start station should not be more than 15 symbols" if start_station.length > 15
-    raise "Start station's name has invalid format, it should be letters" if start_station !~ Station::NAME_STATION
     raise "End station can't be nil" if end_station.nil?
-    raise "End station should not be more than 15 symbols" if end_station.length > 15
-    raise "End station's name has invalid format, it should be letters" if end_station !~ Station::NAME_STATION
     true
   end
 end  

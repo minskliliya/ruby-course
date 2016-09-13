@@ -13,9 +13,9 @@ class Train
     @id_train = id_train
     @type = type
     @number_carriage = []
-    @speed = 0
-    @@trains_number[id_train] == self
     validate!
+    @speed = 0
+    @@trains_number[id_train] = self
   end
 
   def valid?
@@ -88,7 +88,7 @@ class Train
     raise "Name of train can't be nil" if id_train.nil?
     raise "Type of train can't be nil" if type.nil?
     raise "Name of train has invalid format" if id_train !~ ID_TRAIN
-    raise "Type of train has invalid format" if type !~ TRAIN_TYPE
+    #raise "Type of train has invalid format" if type !~ TRAIN_TYPE
     true
   end
 

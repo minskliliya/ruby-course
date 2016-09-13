@@ -1,10 +1,11 @@
-class Carriage < Train
+class Carriage 
 
   include CompanyTrain
   
   attr_reader :type
 
   def initialize(type)
+    validate!
     @type = type
   end  
 

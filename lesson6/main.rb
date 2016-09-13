@@ -79,7 +79,7 @@ end
     begin
       puts "Enter a name of train"
       id_train = gets.chomp
-      puts "Enter a type of train"
+      puts "Enter a type of train, please enter cargo/passenger"
       type = gets.chomp
       if type == "cargo"
         @trains[id_train] = CargoTrain.new(id_train,type)

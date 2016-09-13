@@ -5,8 +5,8 @@ class Carriage
   attr_reader :type
 
   def initialize(type)
-    validate!
     @type = type
+    validate!
   end  
 
   def valid?
@@ -18,7 +18,7 @@ class Carriage
   protected
 
   def validate!
-    raise "Type can't be nil" if type.nil?
+    #raise "Type can't be nil" if type.nil?
     raise "Type of train has invalid format" if type !~ Train::TRAIN_TYPE
     true
   end

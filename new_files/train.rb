@@ -1,16 +1,14 @@
 class Train
 
-  attr_accessor :number, :type, :carriage_number, :speed, :route, :current_station, :next_station
+  attr_accessor :number, :type, :carriages, :speed, :route, :current_station, :next_station
 
 
-  def initialize(number, type,carriage_number)
+  def initialize(number, type)
     @number = number
     @type = type
-    @carriage_number = carriage_number
+    @carriages = []
     @speed = 0
   end  
-
-
 
   def increase_speed(speed)
     self.speed += speed
@@ -28,9 +26,9 @@ class Train
     puts self.carriage_number
   end  
 
-  def add_carriage
+  def add_carriage(carriage)
     if self.speed == 0
-      self.carriage_number += 1
+      self.carriages << carriage
     else
       puts "stop train before add carriage"
     end
@@ -38,7 +36,7 @@ class Train
 
   def delete_carriage
     if self.speed == 0
-      self.carriage_number -= 1
+      self.carriages.delete_at(-1) 
     else
       puts "stop train before delete carriage"
     end
@@ -46,8 +44,8 @@ class Train
         
   def take_route(route)
     self.route = route
-    self.current_station = self.route.stations_route[0]
-    self.route.stations_route[0].arrive_train(self)
+    self.current_station = self.route.stations_route.first
+    self.route.stations_route.first.arrive_train(self)
   end  
 
   def next_station
@@ -66,7 +64,7 @@ class Train
   end  
   
   def to_s
-    "This train's number is #{self.number} and type is #{self.type} and number carriage is #{self.carriage_number}"
+    "This train's number is #{self.number} and type is #{self.type} and number carriage is #{self.carriages.size}"
   end  
 end
 

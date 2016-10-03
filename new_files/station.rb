@@ -2,10 +2,26 @@ class Station
 
   attr_accessor :station_name, :trains
 
+  @@instances = []
+
+  NAME_STATION = /^[a-z]+$/i
+
+  def self.all 
+    puts @@instances
+  end
+    
   def initialize(station_name)
     @station_name = station_name
     @trains = []
+    validate!
+    @@instances << self 
   end  
+
+  def valid?
+    validate!
+  rescue
+    false
+  end
 
   def arrive_train(train)
     self.trains << train
@@ -37,6 +53,15 @@ class Station
 
   def to_s
     "This station's name is #{self.station_name}"
+  end
+
+  protected
+
+  def validate!
+    raise "Station can't be nil" if station_name.nil?
+    raise "Station should not be more than 15 symbols" if station_name.length > 15
+    raise "Station's name has invalid format, it should be letters" if station_name !~ NAME_STATION
+    true
   end
 
 end  

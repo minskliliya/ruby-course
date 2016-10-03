@@ -3,9 +3,16 @@ class Route
   attr_accessor :stations_route
 
   def initialize(start_station,end_station)
+    validate!
     @stations_route = [start_station, end_station]
   end 
 
+  def valid?
+    validate!
+  rescue
+    false
+  end
+  
   def add_station(station)
     if self.stations_route.include?(station) 
       puts "it has already on the route" 
@@ -41,4 +48,14 @@ class Route
   def to_s
     "Route is #{self.stations_route.first} - #{self.stations_route.last}"      
   end  
+
+  protected
+
+  def validate!
+    raise "Start station can't be nil" if start_station.nil?
+    raise "End station can't be nil" if end_station.nil?
+    raise "Start station is wrong" if !start_station.is_a?(Station)
+    raise "End station is wrong " if !end_station.is_a?(Station)
+    true
+  end
 end  

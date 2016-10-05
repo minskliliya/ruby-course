@@ -10,11 +10,12 @@ require_relative 'passenger_train'
 
 class Main
 
-  attr_accessor :stations, :trains
+  attr_accessor :stations, :trains, :carriages
 
   def initialize
     @stations = {}
     @trains = {}
+    @carriages = {}
   end 
 
   def menu_choice 
@@ -61,7 +62,7 @@ class Main
       block_train_station
     when '9'
       puts "your choice is 'take a place or volume in carriage' "
-      #take_carriage   
+      take_place_volume   
     when '10'
       puts "your choice is 'to list carriages for trains'"
       block_carriages_train         
@@ -115,17 +116,20 @@ end
   def add_carriage
     puts "Enter a name of train"
     id_train = gets.chomp
-    if  self.trains[id_train].type == "cargo"
+    puts "Enter number of carriage"
+    nubmer_carriage = gets.chomp 
+    if  self.trains[id_train].instance_of?(CargoTrain)
       puts "Enter general_volume"
       general_volume = gets.chomp
-      carriage = CargoCarriage.new(general_volume)
+      carriage = CargoCarriage.new(nubmer_carriage,general_volume)
     else   
       puts "Enter a nubmer place in carriage"
       count_place = gets.chomp
-      carriage = PassengerCarriage.new(count_place)
+      carriage = PassengerCarriage.new(nubmer_carriage,count_place)
     end
     self.trains[id_train].add_carriage(carriage)
-    puts self.trains
+    self.carriages[nubmer_carriage] = carriage
+    #puts self.trains
   end
 
   def delete_carriage
@@ -134,20 +138,16 @@ end
     self.trains[id_train].delete_carriage
   end
 
-  def take_carriage
-    puts "Enter a name of train"
-    id_train = gets.chomp
-    if  self.trains[id_train].type == "cargo"
-        puts "Enter a volume for carriage"
-        volume = gets.chomp
-        self.trains[]
-        take_volume
-
-        take_place 
-    
-
-
-
+  def take_place_volume
+    puts "Enter a name of carriage"
+    nubmer_carriage = gets.chomp
+    if self.carriages[nubmer_carriage].instance_of?(CargoCarriage)
+      puts "Enter a volume for carriage"
+      volume = gets.chomp        
+      self.carriages[nubmer_carriage].take_volume(volume)
+    else     
+      self.carriages[nubmer_carriage].take_place 
+    end
   end
 
   def drive_train

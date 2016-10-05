@@ -10,7 +10,7 @@ class CargoCarriage < Carriage
   end  
 
   def take_volume(easy_volume)
-    self.easy_volume += easy_volume 
+    self.easy_volume += easy_volume.to_i 
   end
 
   def show_easy_volume

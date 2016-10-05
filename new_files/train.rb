@@ -17,7 +17,7 @@ class Train
     @number = number
     @type = type
     @carriages = []
-  #  validate!
+    validate!
     @speed = 0
     @@instances[number] = self
   end  

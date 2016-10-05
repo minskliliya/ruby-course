@@ -13,7 +13,7 @@ class Station
   def initialize(station_name)
     @station_name = station_name
     @trains = []
-  #  validate!
+    validate!
     @@instances << self 
   end  
 

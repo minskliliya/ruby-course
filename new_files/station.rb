@@ -13,7 +13,7 @@ class Station
   def initialize(station_name)
     @station_name = station_name
     @trains = []
-    validate!
+  #  validate!
     @@instances << self 
   end  
 
@@ -22,6 +22,16 @@ class Station
   rescue
     false
   end
+
+  def block_train
+    if block_given?
+      self.trains.each do |train|
+        yield(train)
+      end
+    else 
+    puts "No block"  
+    end
+  end  
 
   def arrive_train(train)
     self.trains << train
@@ -51,9 +61,9 @@ class Station
     end  
   end  
 
-  def to_s
-    "This station's name is #{self.station_name}"
-  end
+  #def to_s
+  #  "This station's name is #{self.station_name}"
+  #end
 
   protected
 

@@ -27,15 +27,16 @@ class Main
       puts "Type '5' to drive train"
       puts "Type '6' to list stations"
       puts "Type '7' to list trains on the station"
-      #puts "Type '8' to list carriages for trains"
-      #puts "Type '9' to take a place or volume in carriage"
+      puts "Type '8' to list trains on the all stations"
+      puts "Type '9' to take a place or volume in carriage"
+      puts "Type '10' to list carriages for trains"
       puts "Type '0' to exit"
 
       choice = gets.chomp
    
     case choice
     when '1'
-      #puts "your choice is  'create station' "
+      puts "your choice is  'create station' "
       create_station
     when '2'
       puts "your choice is  'create train' "
@@ -51,16 +52,19 @@ class Main
       drive_train    
     when '6'
       puts "your choice is 'list stations' "
-      list_stations       
+      list_stations
     when '7'
       puts "your choice is 'list trains on the station' "
       list_train
     when '8'
-      puts "your choice is 'list carriages for trains' "
-      list_carriage  
+      puts "your choice is 'to list trains on the all stations' "
+      block_train_station
     when '9'
       puts "your choice is 'take a place or volume in carriage' "
-      take_carriage        
+      #take_carriage   
+    when '10'
+      puts "your choice is 'to list carriages for trains'"
+      block_carriages_train         
     when '0'  
       break
     else 
@@ -69,6 +73,23 @@ class Main
   end  
 end  
 
+  def block_train_station
+    self.stations.each do |key,station|
+      puts "Station: #{key} takes the following trains"
+      station.block_train do |train|         
+        puts train
+      end
+    end 
+  end  
+
+  def block_carriages_train
+    self.trains.each do |key,train|
+      puts "Train: #{key} takes the following carriages"
+      train.block_carriagres do |carriage| 
+        puts carriage
+      end
+    end 
+  end  
 
   def create_station
     puts "Enter a name of station"
@@ -95,9 +116,13 @@ end
     puts "Enter a name of train"
     id_train = gets.chomp
     if  self.trains[id_train].type == "cargo"
-      carriage = CargoCarriage.new
+      puts "Enter general_volume"
+      general_volume = gets.chomp
+      carriage = CargoCarriage.new(general_volume)
     else   
-      carriage = PassengerCarriage.new
+      puts "Enter a nubmer place in carriage"
+      count_place = gets.chomp
+      carriage = PassengerCarriage.new(count_place)
     end
     self.trains[id_train].add_carriage(carriage)
     puts self.trains
@@ -109,6 +134,21 @@ end
     self.trains[id_train].delete_carriage
   end
 
+  def take_carriage
+    puts "Enter a name of train"
+    id_train = gets.chomp
+    if  self.trains[id_train].type == "cargo"
+        puts "Enter a volume for carriage"
+        volume = gets.chomp
+        self.trains[]
+        take_volume
+
+        take_place 
+    
+
+
+
+  end
 
   def drive_train
     puts "Enter a name of train"

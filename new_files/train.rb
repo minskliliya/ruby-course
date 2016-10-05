@@ -4,6 +4,9 @@ class Train
 
   attr_accessor :number, :type, :carriages, :speed, :route, :current_station, :next_station
 
+  TRAIN_TYPE = /^cargo$|^passenger$/i
+  NUMBER_TRAIN = /^((\d|[a-z]){3})-?((\d|[a-z]){2})$/i 
+
   @@instances = {}
 
   def self.find(number)
@@ -14,8 +17,23 @@ class Train
     @number = number
     @type = type
     @carriages = []
+  #  validate!
     @speed = 0
     @@instances[number] = self
+  end  
+
+  def valid?
+    validate!
+  rescue
+    false
+  end
+
+  def block_carriagres
+    if block_given?  
+      self.carriages.each do |carriage|
+        yield(carriage)
+      end
+    end   
   end  
 
   def increase_speed(speed)
@@ -31,7 +49,7 @@ class Train
   end    
 
   def show_count_carriage
-    puts self.carriage_number
+    puts self.carriage_number.size
   end  
 
   def add_carriage(carriage)
@@ -44,7 +62,7 @@ class Train
 
   def delete_carriage
     if self.speed == 0
-      self.carriages.delete_at(-1) 
+      self.carriages.pop
     else
       puts "stop train before delete carriage"
     end
@@ -72,7 +90,17 @@ class Train
   end  
   
   def to_s
-    "This train's number is #{self.number} and type is #{self.type} and number carriage is #{self.carriages.size}"
+    "train is #{self.number}, type = #{self.type} and carriages = #{self.carriages.size}"
   end  
+
+  protected
+
+  def validate!
+    raise "Name of train can't be nil" if number.nil?
+    raise "Type of train can't be nil" if type.nil?
+    raise "Name of train has invalid format" if number !~ NUMBER_TRAIN
+    true
+  end
+
 end
 

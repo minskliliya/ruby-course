@@ -1,14 +1,14 @@
-class Carriage 
-
+# class Carriage
+class Carriage
   include CompanyTrain
 
   attr_accessor :type, :number_carriage
 
-  def initialize(number_carriage,type)
+  def initialize(number_carriage, type)
     @type = type
     @number_carriage = number_carriage
     validate!
-  end  
+  end
 
   def valid?
     validate!
@@ -19,7 +19,7 @@ class Carriage
   protected
 
   def validate!
-    raise "Type of train has invalid format" if type !~ Train::TRAIN_TYPE
+    raise 'Type of train has invalid format' if type !~ Train::TRAIN_TYPE
     true
   end
-end  
+end

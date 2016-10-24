@@ -1,12 +1,15 @@
 # class Train (train):
+require_relative 'accessors.rb'
 class Train
   include CompanyTrain
+  include Accessors
 
   TRAIN_TYPE = /^cargo$|^passenger$/i
   NUMBER_TRAIN = /^((\d|[a-z]){3})-?((\d|[a-z]){2})$/i
 
-  attr_accessor :number, :type, :carriages, :speed, :route, :current_station
+  #attr_accessor :number, :type, :carriages, :speed, :route, :current_station
   attr_accessor :next_station
+  attr_accessor_with_history :number, :type, :carriages, :speed, :route, :current_station
 
   @@instances = {}
 
